@@ -29,7 +29,17 @@ class Rotor():
             index_in_input = self.output_letters.index(letter)
             decrypt.append(self.input_letters[index_in_input])
         return "".join(decrypt)
-            
+
+#test code
+# for rotors
+decrypts = ["ZIRRCYWC", "UDHHRSTR", "GFKKWCOW", "YLWWMSJM", "TPQQXJFX"]
+for i, decrypt in zip(range(0,5), decrypts):
+    rotor = Rotor(i)
+    # print(rotor.wiring_dict)
+    # print(rotor.rottor_encrypt_the_letter("Hello bro"))
+    # print(rotor.rottor_decrypt_the_letter(decrypts[i]))
+    assert rotor.rottor_encrypt_the_letter("Hello bro") == decrypts[i]
+    assert rotor.rottor_decrypt_the_letter(decrypts[i]) == "HELLOBRO"
         
 class Reflector(Rotor):
     def __init__(self, seed):
@@ -39,38 +49,26 @@ class Reflector(Rotor):
     def make_the_wiring(self):
         self.part1_of_pairs = random.sample(self.input_letters, 13)
         self.part2_of_pairs = [x for x in self.input_letters if x not in self.part1_of_pairs]
-        self.wiring_dict = {self.part1_of_pairs[i]: self.part2_of_pairs[i] for i in range(0,12)}
+        self.wiring_dict = {self.part1_of_pairs[i]: self.part2_of_pairs[i] for i in range(0,13)}
         
-    # def reflector_change_the_letter(self, message):
-    #     '''Takes an input message, makes all letters uppercase and removes whitespace. Return the message cryptographed.'''
-    #     cryptograph = []
-    #     for letter in message.upper().replace(" ", ""):
-    #         if letter in list(self.wiring_dict.keys()):
-    #             cryptograph.append(self.wiring_dict[letter])
-    #         else: 
-    #             # cryptograph.append(self.wiring_dict.keys()[self.wiring_dict.values().index(letter)])
-    #             print(self.wiring_dict.keys()[self.wiring_dict.values().index(letter)])
-
-    #         # cryptograph.append(self.wiring_dict[letter])
-    #     return "".join(cryptograph)
+    def reflector_change_the_letter(self, message):
+        '''Takes an input message, makes all letters uppercase and removes whitespace. Returns the message encrypted.'''
+        cryptograph = []
+        for letter in message.upper().replace(" ", ""):
+            if letter in self.part1_of_pairs:
+                cryptograph.append(self.wiring_dict[letter])
+            else:
+                cryptograph.append(self.part1_of_pairs[self.part2_of_pairs.index(letter)])
+        return "".join(cryptograph)
 
 
-
-
-
-#test code
-# for rotors
-# decrypts = ["ZIRRCYWC", "UDHHRSTR", "GFKKWCOW", "YLWWMSJM", "TPQQXJFX"]
-# for i, decrypt in zip(range(0,5), decrypts):
-#     rotor = Rotor(i)
-#     print(rotor.wiring_dict)
-#     print(rotor.rottor_encrypt_the_letter("Hello bro"))
-#     print(rotor.rottor_decrypt_the_letter(decrypts[i]))
-
-
+# test code
 # for reflectors
-# refl = Reflector(1)
+refl = Reflector(1)
 # print(refl.part1_of_pairs)
 # print(refl.part2_of_pairs)
 # print(refl.wiring_dict)
-# print(refl.rottor_change_the_letter("Hello bro"))
+# print(refl.reflector_change_the_letter("Hello bro"))
+# print(refl.reflector_change_the_letter("LTHHGMDG"))
+assert refl.reflector_change_the_letter("Hello bro") == "LTHHGMDG"
+assert refl.reflector_change_the_letter("LTHHGMDG") == "HELLOBRO"
