@@ -6,3 +6,5 @@ The Enigma machine is a well known device to encrypt messages, primarily used by
 Germans in the second world war and famously cracked by the Allied forces. It would be
 interesting to create a Python version of the Enigma machine, that can encrypt and decrypt
 messages.
+
+https://www.youtube.com/watch?v=ybkkiGtJmkM

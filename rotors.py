@@ -9,6 +9,7 @@ class Rotor():
         self.seed = seed
         random.seed(self.seed)
         self.make_the_wiring()
+        self.notchposition = random.randint(1,26)
         
     def make_the_wiring(self):
         # The list of new random output letters
