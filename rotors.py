@@ -30,16 +30,7 @@ class Rotor():
             decrypt.append(self.input_letters[index_in_input])
         return "".join(decrypt)
 
-#test code
-# for rotors
-decrypts = ["ZIRRCYWC", "UDHHRSTR", "GFKKWCOW", "YLWWMSJM", "TPQQXJFX"]
-for i, decrypt in zip(range(0,5), decrypts):
-    rotor = Rotor(i)
-    # print(rotor.wiring_dict)
-    # print(rotor.rottor_encrypt_the_letter("Hello bro"))
-    # print(rotor.rottor_decrypt_the_letter(decrypts[i]))
-    assert rotor.rottor_encrypt_the_letter("Hello bro") == decrypts[i]
-    assert rotor.rottor_decrypt_the_letter(decrypts[i]) == "HELLOBRO"
+
         
 class Reflector(Rotor):
     def __init__(self, seed):
@@ -60,15 +51,3 @@ class Reflector(Rotor):
             else:
                 cryptograph.append(self.part1_of_pairs[self.part2_of_pairs.index(letter)])
         return "".join(cryptograph)
-
-
-# test code
-# for reflectors
-refl = Reflector(1)
-# print(refl.part1_of_pairs)
-# print(refl.part2_of_pairs)
-# print(refl.wiring_dict)
-# print(refl.reflector_change_the_letter("Hello bro"))
-# print(refl.reflector_change_the_letter("LTHHGMDG"))
-assert refl.reflector_change_the_letter("Hello bro") == "LTHHGMDG"
-assert refl.reflector_change_the_letter("LTHHGMDG") == "HELLOBRO"
