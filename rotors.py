@@ -13,14 +13,22 @@ class Rotor():
     def make_the_wiring(self):
         # The list of new random output letters
         self.output_letters = random.sample(self.input_letters, 26)
-        self.wiring_dict = {self.input_letters[i]: self.output_letters[i] for i in range(0,25)}
+        self.wiring_dict = {self.input_letters[i]: self.output_letters[i] for i in range(0,26)}
         
-    def rottor_change_the_letter(self, message):
-        '''Takes an input message, makes all letters uppercase and removes whitespace. Return the message cryptographed.'''
+    def rottor_encrypt_the_letter(self, message):
+        '''Takes an input message, makes all letters uppercase and removes whitespace. Return the message encrypted.'''
         cryptograph = []
         for letter in message.upper().replace(" ", ""):
             cryptograph.append(self.wiring_dict[letter])
         return "".join(cryptograph)
+
+    def rottor_decrypt_the_letter(self, message):
+        '''Return the message decrypted.'''
+        decrypt = []
+        for letter in message.upper().replace(" ", ""):
+            index_in_input = self.output_letters.index(letter)
+            decrypt.append(self.input_letters[index_in_input])
+        return "".join(decrypt)
             
         
 class Reflector(Rotor):
@@ -52,10 +60,13 @@ class Reflector(Rotor):
 
 #test code
 # for rotors
-for i in range(0,5):
-    rotor = Rotor(i)
-    print(rotor.wiring_dict)
-    print(rotor.rottor_change_the_letter("Hello bro"))
+# decrypts = ["ZIRRCYWC", "UDHHRSTR", "GFKKWCOW", "YLWWMSJM", "TPQQXJFX"]
+# for i, decrypt in zip(range(0,5), decrypts):
+#     rotor = Rotor(i)
+#     print(rotor.wiring_dict)
+#     print(rotor.rottor_encrypt_the_letter("Hello bro"))
+#     print(rotor.rottor_decrypt_the_letter(decrypts[i]))
+
 
 # for reflectors
 # refl = Reflector(1)
