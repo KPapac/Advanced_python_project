@@ -15,6 +15,10 @@ class Rotor():
         # The list of new random output letters
         self.output_letters = random.sample(self.input_letters, 26)
         self.wiring_dict = {self.input_letters[i]: self.output_letters[i] for i in range(0,26)}
+
+    def set_the_wiring(self, initial_position):
+        ''''''
+        self.wiring_dict = {self.input_letters[i]: self.output_letters[(i + initial_position - 1)%26] for i in range(0,26)}
         
     def rottor_encrypt_the_letter(self, message):
         '''Takes an input message, makes all letters uppercase and removes whitespace. Return the message encrypted.'''
@@ -35,10 +39,6 @@ class Rotor():
     def rotor_rotate_after_encrypt(self):
         ''''''
         self.wiring_dict = {self.input_letters[i]: list(self.wiring_dict.values())[(i + 1)%26] for i in range(0,26)}
-
-    def rotor_rotate_after_decrypt(self):
-        ''''''
-        self.wiring_dict = {self.input_letters[i]: list(self.wiring_dict.values())[(i - 1)%26] for i in range(0,26)}
 
 
 
