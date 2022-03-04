@@ -32,6 +32,16 @@ class Rotor():
         return "".join(decrypt)
 
 
+    def rotor_rotate_after_encrypt(self):
+        ''''''
+        self.wiring_dict = {self.input_letters[i]: list(self.wiring_dict.values())[(i + 1)%26] for i in range(0,26)}
+
+    def rotor_rotate_after_decrypt(self):
+        ''''''
+        self.wiring_dict = {self.input_letters[i]: list(self.wiring_dict.values())[(i - 1)%26] for i in range(0,26)}
+
+
+
         
 class Reflector(Rotor):
     def __init__(self, seed):
