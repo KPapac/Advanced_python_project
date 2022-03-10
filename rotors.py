@@ -10,6 +10,8 @@ class Rotor():
         random.seed(self.seed)
         self.make_the_wiring()
         self.notchposition = random.randint(1,26)
+        self.initial_position = 1
+        self.current_position = self.initial_position
         
     def make_the_wiring(self):
         # The list of new random output letters
@@ -35,10 +37,13 @@ class Rotor():
             decrypt.append(self.input_letters[index_in_input])
         return "".join(decrypt)
 
-
     def rotor_rotate_after_encrypt(self):
         ''''''
         self.wiring_dict = {self.input_letters[i]: list(self.wiring_dict.values())[(i + 1)%26] for i in range(0,26)}
+        self.current_position = self.initial_position + 1
+
+    def print_rotor_info(self):
+        print(self.notchposition, self.wiring_dict)
 
 
 
