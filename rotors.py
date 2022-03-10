@@ -14,13 +14,10 @@ class Rotor():
         self.current_position = self.initial_position
         
     def make_the_wiring(self):
+        '''Sets the dictionary for the rotor.'''
         # The list of new random output letters
         self.output_letters = random.sample(self.input_letters, 26)
         self.wiring_dict = {self.input_letters[i]: self.output_letters[i] for i in range(0,26)}
-
-    def set_the_wiring(self, initial_position):
-        ''''''
-        self.wiring_dict = {self.input_letters[i]: self.output_letters[(i + initial_position - 1)%26] for i in range(0,26)}
         
     def rottor_encrypt_the_letter(self, message):
         '''Takes an input message, makes all letters uppercase and removes whitespace. Return the message encrypted.'''
@@ -38,11 +35,12 @@ class Rotor():
         return "".join(decrypt)
 
     def rotor_rotate_after_encrypt(self):
-        ''''''
+        '''Changes the dictionary of the letters to encrypt.'''
         self.wiring_dict = {self.input_letters[i]: list(self.wiring_dict.values())[(i + 1)%26] for i in range(0,26)}
         self.current_position = self.initial_position + 1
 
     def print_rotor_info(self):
+        '''Print position of the notch and the dictionary of letters for a rotor.'''
         print(self.notchposition, self.wiring_dict)
 
 
@@ -54,6 +52,7 @@ class Reflector(Rotor):
         self.make_the_wiring()
     
     def make_the_wiring(self):
+        '''Sets the dictionary for the reflector. Letters are connected in pairs.'''
         self.part1_of_pairs = random.sample(self.input_letters, 13)
         self.part2_of_pairs = [x for x in self.input_letters if x not in self.part1_of_pairs]
         self.wiring_dict = {self.part1_of_pairs[i]: self.part2_of_pairs[i] for i in range(0,13)}

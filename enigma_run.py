@@ -4,7 +4,8 @@ import sys
 import plugboard, rotors
 
 def enigma_encrypt(message, rotor_order_str):
-    ''''''
+    '''Takes as inputs a message to encrypt/decrypt and the order of the 3 out of 5 pre built rotors. The connections of the plugboard are 
+    already given and can be changed by modifying the "plug" dictionary.'''
     plug = plugboard.Plugboard({"W": "H", "A": "B", "o": "e" })
     
     # Set up the enigma parts
@@ -19,10 +20,6 @@ def enigma_encrypt(message, rotor_order_str):
     rotor_order_list = [total_rotors[int(index)] for index in rotor_order_str]
 
     message = message.upper().replace(" ", "")
-    
-    rotor_order_list[0].set_the_wiring(1)
-    rotor_order_list[1].set_the_wiring(1)
-    rotor_order_list[2].set_the_wiring(1)
 
     # Encrypt a message
     encrypt = []
