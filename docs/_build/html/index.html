@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Enigma’s documentation! &#8212; Enigma 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-enigma-s-documentation">
+<h1>Welcome to Enigma’s documentation!<a class="headerlink" href="#welcome-to-enigma-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<span class="target" id="module-enigma_kostas.enigma_run"></span><p>Encrypts and/or decrypts messages.</p>
+<dl class="py function">
+<dt id="enigma_kostas.enigma_run.enigma_encrypt">
+<code class="sig-prename descclassname"><span class="pre">enigma_kostas.enigma_run.</span></code><code class="sig-name descname"><span class="pre">enigma_encrypt</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotor_order_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enigma_kostas.enigma_run.enigma_encrypt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes as inputs a message to encrypt/decrypt and the order of the 3 out of 5 pre built rotors. The connections of the plugboard are 
+already given and can be changed by modifying the “plug” dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>message</strong></dt><dd><p>The message to encrypt or decrypt.</p>
+</dd>
+<dt><strong>rotor_order_str</strong></dt><dd><p>A string of three numbers from 1-5, e.g. “243”.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>char</dt><dd><p>The message encrypted or decrypted.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-enigma_kostas.rotors"></span><p>Classes for Rotors and Reflectors of the enigma machines.</p>
+<dl class="py class">
+<dt id="enigma_kostas.rotors.Reflector">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">enigma_kostas.rotors.</span></code><code class="sig-name descname"><span class="pre">Reflector</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enigma_kostas.rotors.Reflector" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reflector is a part of the enigma machine that reflects the output of the 3 rotors, back to them for further encryption. Letters are connected in pairs.</p>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#enigma_kostas.rotors.Reflector.make_the_wiring" title="enigma_kostas.rotors.Reflector.make_the_wiring"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_the_wiring</span></code></a>()</p></td>
+<td><p>Sets the dictionary for the reflector.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_rotor_info</span></code>()</p></td>
+<td><p>Print position of the notch and the dictionary of letters for a rotor.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#enigma_kostas.rotors.Reflector.reflector_change_the_letter" title="enigma_kostas.rotors.Reflector.reflector_change_the_letter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reflector_change_the_letter</span></code></a>(message)</p></td>
+<td><p>Takes an input message, makes all letters uppercase and removes whitespace.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotor_rotate_after_encrypt</span></code>()</p></td>
+<td><p>Changes the dictionary of the letters to encrypt.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rottor_decrypt_the_letter</span></code>(message)</p></td>
+<td><p>Return the message decrypted.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rottor_encrypt_the_letter</span></code>(message)</p></td>
+<td><p>Takes an input message, makes all letters uppercase and removes whitespace.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="enigma_kostas.rotors.Reflector.make_the_wiring">
+<code class="sig-name descname"><span class="pre">make_the_wiring</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#enigma_kostas.rotors.Reflector.make_the_wiring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the dictionary for the reflector. Letters are connected in pairs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="enigma_kostas.rotors.Reflector.reflector_change_the_letter">
+<code class="sig-name descname"><span class="pre">reflector_change_the_letter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enigma_kostas.rotors.Reflector.reflector_change_the_letter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes an input message, makes all letters uppercase and removes whitespace. Returns the message encrypted.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="enigma_kostas.rotors.Rotor">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">enigma_kostas.rotors.</span></code><code class="sig-name descname"><span class="pre">Rotor</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enigma_kostas.rotors.Rotor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotors have an internal circuit that connects the 26 input latin letters with the 26 output letters. The circuit is simulated with a dictionary, 
+the values of which are randomly sampled without replacement out of the 26 letters. The rotors also have a notch, which allows rotors 2 and 3 to be 
+rotated and thus change the internal circuit that connects input and output letters.</p>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#enigma_kostas.rotors.Rotor.make_the_wiring" title="enigma_kostas.rotors.Rotor.make_the_wiring"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_the_wiring</span></code></a>()</p></td>
+<td><p>Sets the dictionary for the rotor.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#enigma_kostas.rotors.Rotor.print_rotor_info" title="enigma_kostas.rotors.Rotor.print_rotor_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_rotor_info</span></code></a>()</p></td>
+<td><p>Print position of the notch and the dictionary of letters for a rotor.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#enigma_kostas.rotors.Rotor.rotor_rotate_after_encrypt" title="enigma_kostas.rotors.Rotor.rotor_rotate_after_encrypt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotor_rotate_after_encrypt</span></code></a>()</p></td>
+<td><p>Changes the dictionary of the letters to encrypt.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#enigma_kostas.rotors.Rotor.rottor_decrypt_the_letter" title="enigma_kostas.rotors.Rotor.rottor_decrypt_the_letter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rottor_decrypt_the_letter</span></code></a>(message)</p></td>
+<td><p>Return the message decrypted.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#enigma_kostas.rotors.Rotor.rottor_encrypt_the_letter" title="enigma_kostas.rotors.Rotor.rottor_encrypt_the_letter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rottor_encrypt_the_letter</span></code></a>(message)</p></td>
+<td><p>Takes an input message, makes all letters uppercase and removes whitespace.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="enigma_kostas.rotors.Rotor.make_the_wiring">
+<code class="sig-name descname"><span class="pre">make_the_wiring</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#enigma_kostas.rotors.Rotor.make_the_wiring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the dictionary for the rotor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="enigma_kostas.rotors.Rotor.print_rotor_info">
+<code class="sig-name descname"><span class="pre">print_rotor_info</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#enigma_kostas.rotors.Rotor.print_rotor_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print position of the notch and the dictionary of letters for a rotor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="enigma_kostas.rotors.Rotor.rotor_rotate_after_encrypt">
+<code class="sig-name descname"><span class="pre">rotor_rotate_after_encrypt</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#enigma_kostas.rotors.Rotor.rotor_rotate_after_encrypt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the dictionary of the letters to encrypt.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="enigma_kostas.rotors.Rotor.rottor_decrypt_the_letter">
+<code class="sig-name descname"><span class="pre">rottor_decrypt_the_letter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enigma_kostas.rotors.Rotor.rottor_decrypt_the_letter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the message decrypted.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="enigma_kostas.rotors.Rotor.rottor_encrypt_the_letter">
+<code class="sig-name descname"><span class="pre">rottor_encrypt_the_letter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enigma_kostas.rotors.Rotor.rottor_encrypt_the_letter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes an input message, makes all letters uppercase and removes whitespace. Return the message encrypted.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-enigma_kostas.plugboard"></span><dl class="py class">
+<dt id="enigma_kostas.plugboard.Plugboard">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">enigma_kostas.plugboard.</span></code><code class="sig-name descname"><span class="pre">Plugboard</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_of_connections</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enigma_kostas.plugboard.Plugboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plugboard is a part of the enigma machine which can cause a letter to be changed 0, 1 or 2 times.</p>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#enigma_kostas.plugboard.Plugboard.plugboard_encrypt_the_letters" title="enigma_kostas.plugboard.Plugboard.plugboard_encrypt_the_letters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plugboard_encrypt_the_letters</span></code></a>(message)</p></td>
+<td><p>Takes as input a dictionary of letters to connect and swaps the connected letters with each other.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="enigma_kostas.plugboard.Plugboard.plugboard_encrypt_the_letters">
+<code class="sig-name descname"><span class="pre">plugboard_encrypt_the_letters</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enigma_kostas.plugboard.Plugboard.plugboard_encrypt_the_letters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes as input a dictionary of letters to connect and swaps the connected letters with each other. 
+Letters without connections do not change. E.g. A connection between “w” and “h” is made, so if the 
+message “HELLOWORLD” passes though the plugboard, it will come out as “WELLOHORLD”.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Enigma</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Konstantinos Papachristos.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
